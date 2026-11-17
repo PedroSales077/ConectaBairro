@@ -2,3 +2,5 @@ Django>=5.2,<5.3
 Pillow>=11.0,<13.0
 python-dotenv>=1.0,<2.0
 coverage>=7.6,<8
+gunicorn>=23.0,<24.0
+whitenoise>=6.9,<7.0
