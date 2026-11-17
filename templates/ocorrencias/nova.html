@@ -1,23 +1,6 @@
-{% extends "base.html" %}
-{% block title %}Registrar ocorrência | Destino Certo{% endblock %}
-{% block content %}
-<div class="row justify-content-center">
-  <div class="col-lg-8">
-    <h1 class="h2">Registrar ocorrência</h1>
-    <p>Descreva o descarte irregular e envie uma fotografia. Não informe dados pessoais de terceiros.</p>
-    <form method="post" enctype="multipart/form-data" class="card card-body">
-      {% csrf_token %}
-      {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
-      {% for field in form %}
-        <div class="mb-3">
-          <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
-          {{ field }}
-          {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
-          {% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}
-        </div>
-      {% endfor %}
-      <button class="btn btn-success" type="submit">Enviar ocorrência</button>
-    </form>
-  </div>
-</div>
-{% endblock %}
+{% extends "base.html" %}{% block title %}Registrar Ocorrência | Conecta Bairro{% endblock %}{% block content %}<div class="page-container narrow-container"><div class="page-heading"><h1>Registrar Ocorrência</h1><p>Ajude a manter nossa cidade limpa. Descreva o descarte irregular ou problema urbano e envie uma fotografia.</p></div><form method="post" enctype="multipart/form-data" class="form-panel" id="occurrence-form">{% csrf_token %}{% if form.non_field_errors %}<div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+<div class="form-group"><label for="{{ form.descricao.id_for_label }}">Descrição <span class="required">*</span></label>{{ form.descricao }}<p class="help-text">Não informe dados pessoais de terceiros na descrição.</p>{% for error in form.descricao.errors %}<div class="field-error" role="alert">{{ error }}</div>{% endfor %}</div>
+<div class="form-group"><label for="{{ form.endereco_local.id_for_label }}">Endereço do local <span class="required">*</span></label><div class="address-wrap"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>{{ form.endereco_local }}</div>{% for error in form.endereco_local.errors %}<div class="field-error" role="alert">{{ error }}</div>{% endfor %}</div>
+<div class="form-group"><label for="{{ form.foto.id_for_label }}">Fotografia <span class="required">*</span></label><div class="upload-zone"><div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i></div><strong>Clique para enviar uma imagem</strong><p>PNG, JPG ou WEBP (Máx. 5 MB)</p>{{ form.foto }}<div class="image-name" id="image-name" aria-live="polite"></div></div>{% if form.foto.help_text %}<p class="help-text">{{ form.foto.help_text }}</p>{% endif %}{% for error in form.foto.errors %}<div class="field-error" role="alert">{{ error }}</div>{% endfor %}</div>
+<details class="coordinates-details"><summary><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Coordenadas Geográficas (Opcional)</summary><div class="row g-3 mt-1"><div class="col-md-6"><label for="{{ form.latitude.id_for_label }}">Latitude</label>{{ form.latitude }}{% for error in form.latitude.errors %}<div class="field-error">{{ error }}</div>{% endfor %}</div><div class="col-md-6"><label for="{{ form.longitude.id_for_label }}">Longitude</label>{{ form.longitude }}{% for error in form.longitude.errors %}<div class="field-error">{{ error }}</div>{% endfor %}</div></div></details>
+<button class="btn submit-btn" type="submit"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar ocorrência</button></form></div>{% endblock %}{% block scripts %}<script>document.addEventListener('DOMContentLoaded',function(){var f=document.getElementById('id_foto');var n=document.getElementById('image-name');if(f&&n){f.addEventListener('change',function(){n.textContent=f.files&&f.files.length?f.files[0].name:'';});}});</script>{% endblock %}

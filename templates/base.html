@@ -1,34 +1,8 @@
 <!doctype html>
-<html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}Destino Certo{% endblock %}</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  {% load static %}
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="{% url 'inicio' %}">Destino Certo</a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="{% url 'inicio' %}">Início</a>
-      <a class="nav-link" href="{% url 'nova_ocorrencia' %}">Registrar ocorrência</a>
-      <a class="nav-link" href="{% url 'gestao_ocorrencias' %}">Gestão</a>
-    </div>
-  </div>
-</nav>
-<main class="container py-4">
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags|default:'info' }}" role="status">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-  {% block content %}{% endblock %}
-</main>
-<footer class="border-top py-3 mt-5">
-  <div class="container small text-secondary">Projeto acadêmico Destino Certo — não substitui os canais oficiais de atendimento.</div>
-</footer>
-</body>
-</html>
+<html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{% block title %}Conecta Bairro{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">{% load static %}<link href="{% static 'css/style.css' %}" rel="stylesheet"></head>
+<body><header class="site-header sticky-top"><nav class="navbar navbar-expand-lg"><div class="container nav-shell"><a class="navbar-brand d-flex align-items-center gap-3" href="{% url 'inicio' %}"><span class="brand-icon"><i class="fa-solid fa-city" aria-hidden="true"></i></span><span><strong>Conecta Bairro</strong><small class="d-block">ZELADORIA URBANA</small></span></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavigation" aria-controls="siteNavigation" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="siteNavigation"><div class="navbar-nav nav-center"><a class="nav-link {% if request.resolver_match.url_name == 'inicio' %}active{% endif %}" href="{% url 'inicio' %}"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a><a class="nav-link {% if request.resolver_match.url_name == 'nova_ocorrencia' %}active{% endif %}" href="{% url 'nova_ocorrencia' %}"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Registrar Ocorrência</a><a class="nav-link {% if request.resolver_match.url_name == 'gestao_ocorrencias' %}active{% endif %}" href="{% url 'gestao_ocorrencias' %}"><i class="fa-solid fa-chart-pie" aria-hidden="true"></i> Gestão</a></div><div class="nav-profile"><span><strong>Cidadão Ativo</strong><small>São Paulo, SP</small></span><span class="avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span></div></div></div></nav></header>
+<main class="page-main">{% if messages %}<div class="page-container">{% for message in messages %}<div class="alert alert-{{ message.tags|default:'info' }}" role="status">{{ message }}</div>{% endfor %}</div>{% endif %}{% block content %}{% endblock %}</main>
+<footer class="site-footer"><div class="container d-flex flex-column flex-md-row justify-content-between gap-3"><span>Projeto acadêmico Conecta Bairro — Não substitui os canais oficiais de atendimento.</span><span>Participação comunitária e descarte responsável.</span></div></footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>{% block scripts %}{% endblock %}</body></html>

@@ -1,12 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Registro recebido | Destino Certo{% endblock %}
+{% block title %}Registro recebido | ConectaBairro{% endblock %}
 {% block content %}
-<div class="card card-body text-center mx-auto success-card">
-  <div class="display-4 text-success" aria-hidden="true">✓</div>
-  <h1 class="h2">Ocorrência registrada com sucesso</h1>
-  <p>Seu registro foi armazenado para análise administrativa.</p>
-  <p><strong>Número:</strong> #{{ ocorrencia.pk }}<br><strong>Status:</strong> {{ ocorrencia.get_status_display }}</p>
-  <p class="small text-secondary">Este registro não foi enviado automaticamente à Prefeitura ou ao SP156.</p>
-  <a class="btn btn-success" href="{% url 'inicio' %}">Voltar ao início</a>
-</div>
+<div class="card modern-card success-card mx-auto text-center"><div class="card-body p-4 p-md-5"><div class="success-icon mx-auto mb-4"><i class="fa-solid fa-check" aria-hidden="true"></i></div><span class="section-kicker">REGISTRO RECEBIDO</span><h1 class="h2 fw-bold mt-2">Ocorrência registrada com sucesso!</h1><p class="text-secondary">Seu registro foi armazenado para análise administrativa.</p><div class="protocol-panel my-4"><div><span>Número do registro</span><strong>#{{ ocorrencia.pk }}</strong></div><div><span>Status</span><strong>{{ ocorrencia.get_status_display }}</strong></div></div><p class="small text-secondary">Este registro não foi enviado automaticamente à Prefeitura ou ao SP156.</p><a class="btn btn-primary-custom mt-3" href="{% url 'inicio' %}"><i class="fa-solid fa-house me-2" aria-hidden="true"></i>Voltar ao início</a></div></div>
 {% endblock %}
