@@ -1,0 +1,9 @@
+body { min-height: 100vh; }
+main { min-height: 70vh; }
+.form-control, .form-select { min-height: 44px; }
+textarea.form-control { min-height: 120px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+}
+.success-card { max-width: 38rem; }

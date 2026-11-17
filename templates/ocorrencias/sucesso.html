@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Registro recebido | Destino Certo{% endblock %}
+{% block content %}
+<div class="card card-body text-center mx-auto success-card">
+  <div class="display-4 text-success" aria-hidden="true">✓</div>
+  <h1 class="h2">Ocorrência registrada com sucesso</h1>
+  <p>Seu registro foi armazenado para análise administrativa.</p>
+  <p><strong>Número:</strong> #{{ ocorrencia.pk }}<br><strong>Status:</strong> {{ ocorrencia.get_status_display }}</p>
+  <p class="small text-secondary">Este registro não foi enviado automaticamente à Prefeitura ou ao SP156.</p>
+  <a class="btn btn-success" href="{% url 'inicio' %}">Voltar ao início</a>
+</div>
+{% endblock %}

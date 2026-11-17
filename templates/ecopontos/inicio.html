@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Início | Destino Certo{% endblock %}
+{% block content %}
+<section class="p-4 p-md-5 rounded-3 bg-light mb-4">
+  <h1 class="display-6 fw-bold">Descarte correto começa com informação.</h1>
+  <p class="lead">Consulte ecopontos e registre ocorrências de descarte irregular na região.</p>
+  <a class="btn btn-success btn-lg" href="{% url 'nova_ocorrencia' %}">Registrar ocorrência</a>
+</section>
+<h2 class="h3 mb-3">Ecopontos disponíveis</h2>
+{% if ecopontos %}
+  <div class="row g-3">
+    {% for ecoponto in ecopontos %}
+      <div class="col-12 col-md-6">
+        <article class="card h-100">
+          <div class="card-body">
+            <h3 class="h5">{{ ecoponto.nome }}</h3>
+            <p class="mb-1"><strong>Endereço:</strong> {{ ecoponto.endereco }}</p>
+            <p class="mb-1"><strong>Bairro:</strong> {{ ecoponto.bairro }}</p>
+            <p class="mb-1"><strong>Funcionamento:</strong> {{ ecoponto.horario_funcionamento }}</p>
+            <p class="mb-0"><strong>Materiais aceitos:</strong> {{ ecoponto.materiais_aceitos|linebreaksbr }}</p>
+          </div>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="alert alert-info">Nenhum ecoponto foi cadastrado ainda. A equipe administrativa deve inserir dados conferidos antes da divulgação.</div>
+{% endif %}
+{% endblock %}

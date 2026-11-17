@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Gestão de ocorrências | Destino Certo{% endblock %}
+{% block content %}
+<h1 class="h2">Gestão de ocorrências</h1>
+<p class="text-secondary">Área restrita a usuários autenticados com permissão de equipe.</p>
+{% if ocorrencias %}
+<div class="table-responsive">
+<table class="table table-striped align-middle">
+  <thead><tr><th>Nº</th><th>Data</th><th>Local</th><th>Descrição</th><th>Foto</th><th>Status</th><th>Atualizar</th></tr></thead>
+  <tbody>
+  {% for item in ocorrencias %}
+    <tr>
+      <td>#{{ item.pk }}</td>
+      <td>{{ item.data_registro|date:"d/m/Y H:i" }}</td>
+      <td>{{ item.endereco_local }}</td>
+      <td>{{ item.descricao|truncatechars:100 }}</td>
+      <td><a href="{{ item.foto.url }}" target="_blank" rel="noopener">Visualizar</a></td>
+      <td>{{ item.get_status_display }}</td>
+      <td>
+        <form method="post" action="{% url 'atualizar_status' item.pk %}" class="d-flex gap-2">
+          {% csrf_token %}
+          <label class="visually-hidden" for="status-{{ item.pk }}">Status da ocorrência {{ item.pk }}</label>
+          <select class="form-select form-select-sm" name="status" id="status-{{ item.pk }}">
+            {% for value,label in status_choices %}
+              <option value="{{ value }}" {% if item.status == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <button class="btn btn-sm btn-outline-success" type="submit">Salvar</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<div class="alert alert-info">Ainda não há ocorrências registradas.</div>
+{% endif %}
+{% endblock %}
