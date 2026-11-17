@@ -1,8 +1,6 @@
 # ConectaBairro
 
-# Destino Certo
-
-MVP desenvolvido como parte da Experiência Prática III da disciplina de Projeto de Software.
+MVP desenvolvido pela disciplina de Projeto de Software.
 
 ## Sobre o projeto
 
